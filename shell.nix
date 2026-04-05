@@ -18,8 +18,6 @@ pkgs.mkShell {
       python-pkgs: with python-pkgs; [
 
         # select Python packages here
-        pandas
-        requests
 
       ]
     ))
