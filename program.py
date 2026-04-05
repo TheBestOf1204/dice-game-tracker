@@ -14,16 +14,6 @@ class PlayerData:
     def is_win(self):
         return self.get_points() >= win_numb
 
-    def get_row_len(self):
-        longest = len(self.name)
-        for n in self.points:
-            if len(str(n)) > longest:
-                longest = len(str(n))
-        # Berücksichtige auch die Länge der Summe
-        if len(str(self.get_points())) > longest:
-            longest = len(str(self.get_points()))
-        return longest
-
     def __str__(self):
         return (
             "Player no."
