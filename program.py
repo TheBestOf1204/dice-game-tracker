@@ -218,7 +218,7 @@ def round_print():
             to_print += return_first_line(number_row_len, player_row_len)
         else:
             to_print += "\n"
-            for l in range(sum(player_row_len) + number_row_len + len(player_row_len) * 3):
+            for _ in range(sum(player_row_len) + number_row_len + len(player_row_len) * 3):
                 if i == 1:
                     to_print += "="
                 else:
