@@ -1,7 +1,8 @@
 class PlayerData:
     index_counter = 0
+
     def __init__(self, name):
-        #self.row_len = None
+        # self.row_len = None
         self.name = name
         self.points = []
         self.index = self.index_counter
@@ -24,7 +25,15 @@ class PlayerData:
         return longest
 
     def __str__(self):
-        return "Player no." + str(self.index + 1) + " : " + str(self.name) + " : currently " + str(self.get_points()) + " points"
+        return (
+            "Player no."
+            + str(self.index + 1)
+            + " : "
+            + str(self.name)
+            + " : currently "
+            + str(self.get_points())
+            + " points"
+        )
 
 
 win_numb = 10000
@@ -34,7 +43,6 @@ nunber_row_titel = "Round"
 number_row_prefix = "No."
 round_counter = 0
 vertical_seperator = " | "
-
 
 
 def goal_reached(player):
@@ -47,7 +55,13 @@ def goal_reached(player):
 
     """)
     print(player)
-    print("has reached", win_numb, "points." "If no one beats them in this round they will win!" if  player_count != player.index + 1 else "As they are the last player in this round they will win")
+    print(
+        "has reached",
+        win_numb,
+        "points.If no one beats them in this round they will win!"
+        if player_count != player.index + 1
+        else "As they are the last player in this round they will win",
+    )
 
 
 def get_valid_int_inp():
@@ -66,6 +80,7 @@ def get_valid_int_inp():
         except:
             print("Input invalid")
 
+
 def create_list(amount):
     players = []
     for i in range(amount):
@@ -78,6 +93,7 @@ def create_list(amount):
                 break
         players.append(PlayerData(inp_name))
     return players
+
 
 def inp_player_count():
     while True:
@@ -150,8 +166,10 @@ def get_points_input():
         else:
             return inp
 
+
 def sort_players(players_over):
     return sorted(players_over, reverse=True, key=lambda x: x.points)
+
 
 def get_number_row_len():
     row_len = len(nunber_row_titel)
@@ -160,11 +178,13 @@ def get_number_row_len():
         return row_len_with_number
     return row_len
 
+
 def get_missing_spaces(length, str_over):
     ret = ""
     for i in range(length - len(str(str_over))):
         ret += " "
-    return  ret
+    return ret
+
 
 def return_first_line(number_row_len, player_row_len):
     ret = ""
@@ -187,7 +207,9 @@ def return_points_row(number_row_len, player_row_len, current_round):
         ret += vertical_seperator
         if len(players[i].points) >= current_round:
             ret += str(players[i].points[current_round - 1])
-            ret += get_missing_spaces(player_row_len[i], str(players[i].points[current_round - 1]))
+            ret += get_missing_spaces(
+                player_row_len[i], str(players[i].points[current_round - 1])
+            )
         else:
             ret += get_missing_spaces(player_row_len[i], "")
     return ret
@@ -218,7 +240,9 @@ def round_print():
             to_print += return_first_line(number_row_len, player_row_len)
         else:
             to_print += "\n"
-            for _ in range(sum(player_row_len) + number_row_len + len(player_row_len) * 3):
+            for _ in range(
+                sum(player_row_len) + number_row_len + len(player_row_len) * 3
+            ):
                 if i == 1:
                     to_print += "="
                 else:
@@ -245,25 +269,28 @@ def run_game():
         for n in players:
             print()
             round_print()
-            print("\nPlease input the points from ", n, ". Or \"r\" to correct a previous input")
+            print(
+                "\nPlease input the points from ",
+                n,
+                '. Or "r" to correct a previous input',
+            )
             n.points.append(get_points_input())
             if sum(n.points) >= win_numb:
                 goal_reached(n)
                 game_won = True
-        if game_won and input("Finish game? type \"y\"") == "y":
+        if game_won and input('Finish game? type "y"') == "y":
             break
         else:
             game_won = False
 
 
 def finish():
-    players_sorted = sorted(players, reverse = True, key=lambda x: x.points)
+    players_sorted = sorted(players, reverse=True, key=lambda x: x.points)
     print("Here the whole list:")
     round_print()
     print("here the players in order")
     for n in players_sorted:
         print(n)
-
 
 
 def initialize_game():
@@ -274,5 +301,5 @@ def initialize_game():
     finish()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     initialize_game()
