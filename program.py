@@ -261,7 +261,7 @@ def round_print():
 
 
 def run_game():
-    global players, round_counter
+    global round_counter
     cont = True
     game_won = False
     while cont:
